@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import Editor from 'mui-rte'
 import { Paper, Button, Typography, TextField } from '@material-ui/core';
 import { convertToRaw } from 'draft-js'
-import makeNewPost from '../api/API'
+import {makeNewPost} from '../api/API'
 export default function Edit(){
 
     const [title,setTitle] = useState(null);

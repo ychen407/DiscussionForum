@@ -10,7 +10,7 @@ function getCurrentTime(){
         
         return dateString;
 }
-export default function makeNewPost ( info) {
+function makeNewPost ( info) {
     console.log(info)
     fetch('http://localhost:8080/new',{
         method:'POST',headers:{
@@ -24,3 +24,12 @@ export default function makeNewPost ( info) {
         })
     })
 };
+function login(username,password){
+    var url = new URL("http://localhost:8080/login"),
+    params = {"username" : username,"password" : password}
+    url.search = new URLSearchParams(params).toString();
+    fetch(url,{method:"POST"  })
+    .then(response => response.json())
+    .then(result=> console.log(result))
+}
+export { makeNewPost, login};
