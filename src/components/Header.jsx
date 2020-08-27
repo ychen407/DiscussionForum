@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
 import {Link} from "react-router-dom"
+import { useAuth } from '../providers/authProvider';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,9 +22,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
-  const classes = useStyles();
 
+export default function ButtonAppBar() {
+  const {state,dispatch} = useAuth();
+  const classes = useStyles();
+  function LoginButton(){
+    return (<Button color="inherit" href="/#/login">Login</Button>)
+  }
+  function LogoutButton(){
+    return(
+      <Button color="inherit" onClick={()=> dispatch({type :"LOGOUT"})} > Logout</Button>
+    )
+  }
+  
   return (
     <div className={classes.root}>
       <AppBar position="static" >
@@ -34,9 +45,8 @@ export default function ButtonAppBar() {
           </IconButton>
           </Link>
            <Typography variant="h6" className={classes.title}>
-           
           </Typography> 
-          <Button color="inherit" href="/#/login">Login</Button>
+          {state.isAuthenticated ? LogoutButton() : LoginButton()}
         </Toolbar>
       </AppBar>
     </div>

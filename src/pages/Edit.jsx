@@ -1,16 +1,25 @@
-import React,{useEffect,useMemo,useState} from 'react'
+import React,{useState} from 'react'
 import Header from '../components/Header'
 import Editor from 'mui-rte'
-import { Paper, Button, Typography, TextField } from '@material-ui/core';
-import { convertToRaw } from 'draft-js'
+import { Paper, Button, TextField } from '@material-ui/core';
 import {makeNewPost} from '../api/API'
-export default function Edit(){
+import { useAuth } from '../providers/authProvider';
+export default function Edit(props){
 
     const [title,setTitle] = useState(null);
     const [content,setContent] = useState(null);
-
+    const {state} = useAuth();
     const handleSubmit = ()=>{console.log(title);console.log(content)
-        makeNewPost({title: title, content : content,author : 0});
+         makeNewPost({title: title, content : content,author : 0})
+        .then(response => response.json())
+        .then(({data,status,message}) => status === 200 ? true : false);
+    if(state.isAuthenticated){
+        setTimeout(function (){ props.history.push("/")}, 1000);
+    }else{
+        alert("You have not signed it yet. Redirecting to login page");
+        setTimeout(function (){ props.history.push("/login")}, 500);
+    }
+        
     };
     const handleChangeContent = event =>{
       const newContent = event.getCurrentContent().getPlainText()
