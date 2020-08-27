@@ -8,7 +8,12 @@ const initialState = {
     user: null,
     token: null,
 };
-
+if(localStorage.getItem("user")!==null){
+  initialState.user = JSON.parse(localStorage.getItem("user"));
+  initialState.isAuthenticated = true;
+  initialState.token = JSON.parse(localStorage.getItem("token"));
+  console.log(initialState)
+}
 const reducer = (state,action) =>{
     switch(action.type){
         case "LOGIN":

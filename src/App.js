@@ -7,6 +7,7 @@ import Post from './components/Post'
 import Login from './pages/Login';
 import {AuthProvider} from './providers/authProvider';
 function App() {
+
   return (
     <AuthProvider>
     <Router>
