@@ -8,7 +8,7 @@ function makeNewPost (info) {
         },body : JSON.stringify({
             title: info.title,
             content: info.content,
-            user_id: info.author
+            username: info.author
         })
     })
 };
