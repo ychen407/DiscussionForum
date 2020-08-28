@@ -97,7 +97,7 @@ export default function Login(props){
         <Header/>
         <Paper className = {classes.root}>
             <Typography variant = "h4" className={classes.title}>
-              Loggin
+              Login
             </Typography>
             <Divider/>
             <form>
