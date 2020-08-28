@@ -1,6 +1,6 @@
 function makeNewPost (info) {
     var token = JSON.parse(localStorage.getItem("token"));
-    return fetch('http://dsc-fe.herokuapp.com/new',{
+    return fetch('http://springboot-democh.herokuapp.com/new',{
         method:'POST',headers:{
             'Token' : token,
             'Accept':'application/json',
@@ -13,14 +13,14 @@ function makeNewPost (info) {
     })
 };
 function login(username,password){
-    var url = new URL("http://dsc-fe.herokuapp.com/login");
+    var url = new URL("http://springboot-democh.herokuapp.com/login");
     var params = {"username" : username,"password" : password};
     url.search = new URLSearchParams(params).toString();
     return(fetch(url,{method:"POST"  })
             .then(response => response.json()))
 }
 function signup(username,password){
-    var url = new URL("http://dsc-fe.herokuapp.com/register");
+    var url = new URL("http://springboot-democh.herokuapp.com/register");
     var params = {"username" : username,"password" : password};
     url.search = new URLSearchParams(params).toString();
     return(fetch(url,{method:"POST"  })

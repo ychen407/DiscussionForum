@@ -9,16 +9,16 @@ export default function Edit(props){
     const [title,setTitle] = useState(null);
     const [content,setContent] = useState(null);
     const {state} = useAuth();
-    const handleSubmit = ()=>{console.log(title);console.log(content)
-         makeNewPost({title: title, content : content,author : state.user.username})
-        .then(response => response.json())
-        .then(({data,status,message}) => status === 200 ? true : false);
-    if(state.isAuthenticated){
-        setTimeout(function (){ props.history.push("/")}, 1000);
-    }else{
-        alert("You have not signed it yet. Redirecting to login page");
-        setTimeout(function (){ props.history.push("/login")}, 500);
-    }
+    const handleSubmit = ()=>{
+        if(state.isAuthenticated){
+            makeNewPost({title: title, content : content,author : state.user.username})
+            .then(response => response.json())
+            .then(({data,status,message}) => status === 200 ? true : false);
+            setTimeout(function (){ props.history.push("/")}, 1000);
+        }else{
+            alert("You have not signed it yet. Redirecting to login page");
+            setTimeout(function (){ props.history.push("/login")}, 500);
+        }
         
     };
     const handleChangeContent = event =>{
