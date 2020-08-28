@@ -10,7 +10,7 @@ export default function Edit(props){
     const [content,setContent] = useState(null);
     const {state} = useAuth();
     const handleSubmit = ()=>{console.log(title);console.log(content)
-         makeNewPost({title: title, content : content,author : 0})
+         makeNewPost({title: title, content : content,author : state.user.username})
         .then(response => response.json())
         .then(({data,status,message}) => status === 200 ? true : false);
     if(state.isAuthenticated){

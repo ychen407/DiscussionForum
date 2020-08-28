@@ -43,7 +43,7 @@ export default function Content(props){
     const [currentPage,setCurrentPage] = useState(1);
     
     useEffect(()=>{
-        fetch("http://springboot-democh.herokuapp.com/posts/page="+(currentPage-1))
+        fetch("http://localhost:8080/posts/page="+(currentPage-1))
             .then(res => res.json())
             .then(
                 (result) => {setNumPage(result.data[1]);setData([result.data[0]])})},[currentPage]);
@@ -64,7 +64,7 @@ export default function Content(props){
                
                     { data && data[0].map((p)=>(
                         <Grid item key={p.id} >
-                            <ContentItem id={p.id} author="authorName" title={p.title} timeStamp={p.created} content={p.content}/>
+                            <ContentItem id={p.id} author={p.username} title={p.title} timeStamp={p.created} content={p.content}/>
                         </Grid>    
                         )) }
                

@@ -29,11 +29,11 @@ class ContentItem extends Component{
              <CardHeader className={styles.heading}
                         avatar={
                             <Avatar aria-label="recipe">
-                              A
+                             {this.state.author[0]}
                             </Avatar>
                           }
                 title={this.state.title}
-                subheader={this.state.timeStamp}
+                subheader={"posted by " + this.state.author + " at " + this.state.timeStamp}
 
              />
 

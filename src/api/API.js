@@ -1,7 +1,6 @@
-
-function makeNewPost ( info) {
+function makeNewPost (info) {
     var token = JSON.parse(localStorage.getItem("token"));
-    return fetch('http://springboot-democh.herokuapp.com/new',{
+    return fetch('http://localhost:8080/new',{
         method:'POST',headers:{
             'Token' : token,
             'Accept':'application/json',
@@ -14,10 +13,17 @@ function makeNewPost ( info) {
     })
 };
 function login(username,password){
-    var url = new URL("http://springboot-democh.herokuapp.com/login");
+    var url = new URL("http://localhost:8080/login");
     var params = {"username" : username,"password" : password};
     url.search = new URLSearchParams(params).toString();
     return(fetch(url,{method:"POST"  })
             .then(response => response.json()))
 }
-export { makeNewPost, login};
+function signup(username,password){
+    var url = new URL("http://localhost:8080/register");
+    var params = {"username" : username,"password" : password};
+    url.search = new URLSearchParams(params).toString();
+    return(fetch(url,{method:"POST"  })
+            .then(response => response.json()))
+}
+export { makeNewPost, login, signup};
