@@ -42,15 +42,14 @@ export default function Content(props){
     const [data,setData] = useState(null);
     const [currentPage,setCurrentPage] = useState(1);
     
-    useEffect(()=>{
-        fetch("http://springboot-democh.herokuapp.com/posts/page="+(currentPage-1))
+    useEffect( ()=>{
+          fetch("http://springboot-democh.herokuapp.com/posts/page="+(currentPage-1))
             .then(res => res.json())
             .then(
                 (result) => {setNumPage(result.data[1]);setData([result.data[0]])})},[currentPage]);
     
     const handlePageChange = (e,page)=>{
         setCurrentPage(page);
-        console.log("current page" + currentPage);
     }
 
     return(

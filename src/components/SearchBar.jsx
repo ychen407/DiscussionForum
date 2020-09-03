@@ -35,10 +35,10 @@ const useStyles = makeStyles((theme) => ({
         <InputBase
           className={classes.input}
           color ='secondary'
-          placeholder=" search"
+          placeholder=" not implemented yet"
           inputProps={{ 'aria-label': 'search ' }}
         />
-        <IconButton type="submit" className={classes.iconButton} aria-label="search">
+        <IconButton onClick={()=>alert("not implemented error")} className={classes.iconButton} aria-label="search">
           <SearchIcon />
         </IconButton>
         <Divider className={classes.divider} orientation="vertical" />

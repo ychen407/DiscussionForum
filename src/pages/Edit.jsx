@@ -4,6 +4,26 @@ import Editor from 'mui-rte'
 import { Paper, Button, TextField } from '@material-ui/core';
 import {makeNewPost} from '../api/API'
 import { useAuth } from '../providers/authProvider';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+
+const defaultTheme = createMuiTheme()
+
+Object.assign(defaultTheme, {
+    overrides: {
+        MUIRichTextEditor: {
+            root: {
+                marginTop: 20,
+                border: '1px solid grey'
+
+            },
+            editor: {
+                borderBottom: "1px solid gray" ,
+                minHeight:"200px",
+                maxHeight:"auto"
+            }
+        }
+    }
+})
 export default function Edit(props){
 
     const [title,setTitle] = useState(null);
@@ -36,7 +56,9 @@ export default function Edit(props){
             
             <Paper style={{minHeight : "200px", width : '90%', marginLeft : "5%"}} variant ='outlined'>
                 <TextField onChange={handleChangeTitle} label='Title:' fullWidth variant="filled" id="margin-none"/> 
-                <Editor onChange={handleChangeContent} label = "start typing..." inlineToolbar={true} style={{editor:{backgroundColor: "#ebebeb"}}}/>
+                <MuiThemeProvider theme={defaultTheme}>
+                    <Editor onChange={handleChangeContent} label = "start typing..." inlineToolbar={true} style={{editor:{backgroundColor: "#ebebeb"}}}/>
+                </MuiThemeProvider>
             </Paper>
             <Button onClick={handleSubmit} variant="contained" color="primary" style={ {marginTop : "10px", marginLeft : "10%"}}>
                 submit
