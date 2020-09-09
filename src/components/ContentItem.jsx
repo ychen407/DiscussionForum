@@ -6,7 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from "@material-ui/core/styles";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import { convertFromRaw } from 'draft-js';
+
 const styles = (theme)=>({
     heading:{
         alignItems: 'flex-start',
@@ -39,7 +41,7 @@ class ContentItem extends Component{
 
              <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    {this.state.content}
+                    {convertFromRaw(JSON.parse(this.state.content)).getPlainText()}
                 </Typography>
              </CardContent>    
         

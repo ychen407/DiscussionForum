@@ -45,8 +45,8 @@ async function getPostDetail(id){
         let res = await fetch("http://springboot-democh.herokuapp.com/posts/"+id)
         let detail = await res.json();
         return detail;
-    }catch{
-        alert("Something went wrong.")
+    }catch(err){
+        console.log(err);
     }
 }
 export { makeNewPost, login, signup,getPostDetail,submitReply};

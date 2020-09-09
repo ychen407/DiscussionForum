@@ -8,6 +8,9 @@ import Editor from 'mui-rte'
 import Button from '@material-ui/core/Button';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { useAuth } from '../providers/authProvider';
+import RichText from '../components/RichText';
+import { convertToRaw } from 'draft-js'
+
 const defaultTheme = createMuiTheme()
 
 Object.assign(defaultTheme, {
@@ -94,7 +97,7 @@ export default function PostDetail(props){
         setWidth(window.innerWidth);
     }
     const handleChangeMReply = event =>{
-        const mReply = event.getCurrentContent().getPlainText()
+        const mReply = JSON.stringify(convertToRaw(event.getCurrentContent()));
         setMReply(mReply);
     };
     const handleReply =()=>{
@@ -129,7 +132,7 @@ export default function PostDetail(props){
         <div className={classes.root}>
             <Header/>
             <div className={classes.container}>
-                {content === null ? <span></span>:
+                {content === null ? <span>Loading</span>:
                 <Paper className={classes.inner}>
                     <Divider/>
                     <Typography variant="h5" className={classes.child}>{content.data.title}</Typography>
@@ -139,7 +142,7 @@ export default function PostDetail(props){
                         <div>
                             <div><span>{content.data.username}</span></div>
                             <div><span>{content.data.created}</span></div>
-                            <div><p>{content.data.content}</p></div>
+                            <div><RichText content={content.data.content}/></div>
                         </div>
                     </article>
                     <Divider/>
@@ -155,7 +158,7 @@ export default function PostDetail(props){
                                 <div>
                                     <div><span>{r.username}</span></div>
                                     <div><span>{r.created}</span></div>
-                                    <div><p>{r.content}</p></div>
+                                    <div><RichText content={r.content}/></div>
                                 </div>
                             </article>
                             <Divider/>

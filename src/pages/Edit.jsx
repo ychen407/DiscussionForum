@@ -5,7 +5,7 @@ import { Paper, Button, TextField } from '@material-ui/core';
 import {makeNewPost} from '../api/API'
 import { useAuth } from '../providers/authProvider';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-
+import { convertToRaw } from 'draft-js'
 const defaultTheme = createMuiTheme()
 
 Object.assign(defaultTheme, {
@@ -42,7 +42,7 @@ export default function Edit(props){
         
     };
     const handleChangeContent = event =>{
-      const newContent = event.getCurrentContent().getPlainText()
+      const newContent = JSON.stringify(convertToRaw(event.getCurrentContent()));
       setContent(newContent);
     };
 

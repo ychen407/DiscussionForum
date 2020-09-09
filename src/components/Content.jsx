@@ -6,7 +6,7 @@ import Pagination from '@material-ui/lab/Pagination';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import {Link} from "react-router-dom"
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 const useStyles = makeStyles((theme)=>({
     root:{
         marginTop:'20px',
@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme)=>({
     item:{
         height:200,
         margin:'auto'
+    },
+    loading:{
+        marginLeft:"50%"
     },
     newPostButton:{
         float: 'right'
@@ -52,6 +55,8 @@ export default function Content(props){
         setCurrentPage(page);
     }
 
+    if(data === null)
+        return(<CircularProgress className={classes.loading} />)
     return(
         <Paper component='div' className={classes.root} variant='outlined' square>
             <Grid container direction='column' spacing = {0} >
